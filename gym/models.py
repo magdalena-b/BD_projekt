@@ -8,4 +8,6 @@ class Trainer(models.Model):
 
 
 class Classes(models.Model):
-  trainer = model.ForeignKey(Trainer, on_delete=models.CASCADE)
+  trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
+  date = models.CharField(max_length=250)
+  name = models.CharField(max_length=250)
