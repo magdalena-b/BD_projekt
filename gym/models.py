@@ -6,6 +6,9 @@ class Trainer(models.Model):
   email = models.CharField(max_length=250)
   phone = models.CharField(max_length=250)
 
+  def __str__(self):
+    return self.name + " " + self.surname
+
 
 class Classes(models.Model):
   trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
