@@ -1,0 +1,8 @@
+
+
+<ul>
+  <h1> Hello </h1>
+  {%for trainer in all_trainers %}
+  <li> <a href = "gym/{{trainer.id}}/">  {{trainer.surname}}</a>  </li>
+  {% endfor %}
+</ul>
