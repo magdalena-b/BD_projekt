@@ -2,15 +2,8 @@
 
 <ul>
   <h1> Hello </h1>
-  {%for trainer in all_trainers %}
-  <button type="submit"> <a href = "gym/trainers/{{trainer.id}}/"> {{trainer.name}} {{trainer.surname}}</a>  </button>
-  {% endfor %}
-</ul>
 
-
-
-<ul>
-  {%for class in all_classes %}
+  {%for class in object_list %}
   <h2> <a href="gym/classes/{{class.id}}"> {{class.name}} </a> </h2>
   {%endfor%}
 </ul>
