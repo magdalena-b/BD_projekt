@@ -4,6 +4,7 @@ from django.template import loader
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
+from django.views.generic.edit import CreateView
 from .templates.gym.forms import UserForm
 from .models import Trainer, Classes, User
 
@@ -38,6 +39,13 @@ def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
     return render(request, 'gym/classes_details.html', {'class': clss})
+
+
+
+class ClassCreate(CreateView):
+    model = Classes
+    template_name = 'gym/classes_form.html'
+    fields = ['trainer', 'date', 'name', 'description']
 
 
 class UserFormView(View):
