@@ -6,7 +6,7 @@ from django.views.generic import View
 from django.views import generic
 from django.views.generic.edit import CreateView
 from .templates.gym.forms import UserForm
-from .models import Trainer, Classes, User
+from .models import Trainer, Classes, Profile
 
 # def index(request):
 
@@ -40,6 +40,18 @@ def classes_details(request, class_id):
     clss = Classes.objects.get(pk=class_id)
     return render(request, 'gym/classes_details.html', {'clss': clss})
 
+
+def favourited(request):
+    return render(request, 'gym/index.html')
+
+
+# maybe ok????
+# def favourited_classes(request, class_id, user_id):
+#     clss = Classes.objects.get(pk=class_id)
+#     selected_class = clss.get(pk=request.POST['clss'])
+#     user = Profile.objects.get(pk=user_id)
+#     user.classes_set.add(clss)
+#     return render(request, 'gym/classes_details.html', {'clss': clss})
 
 # def classes_favourites(request, class_id):
 #     clss = Classes.objects.get(pk=class_id)
