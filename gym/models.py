@@ -10,8 +10,7 @@ class Trainer(models.Model):
     surname = models.CharField(max_length=250)
     email = models.CharField(max_length=250)
     phone = models.CharField(max_length=250)
-    #current_classes = ArrayField((Classes), blank=True)
-
+     
     def __str__(self):
         return self.name + " " + self.surname
 

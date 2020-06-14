@@ -1,1 +1,9 @@
-{{trainer}}
+<h2>{{trainer}} </h2> 
+
+Zajęcia:
+<ul>
+{%for clss in trainer.classes_set.all%}
+    <li>{{clss.name}} - {{clss.date}} - {{clss.description}} </li>
+{%endfor%}
+
+</ul>
