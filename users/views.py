@@ -15,10 +15,14 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=user.username, password=raw_password)
             login(request, user)
-            return redirect('')
+            return redirect('show_profile')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+def show_profile(request):
+    return render(request, 'show_profile.html')
 
 
 

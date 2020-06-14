@@ -30,8 +30,8 @@ class Classes(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    name = models.TextField(max_length=500, blank=True)
-    surname = models.CharField(max_length=30, blank=True)
+    name = models.TextField(max_length=500, null=True)
+    surname = models.CharField(max_length=30, null=True)
 
 @receiver(post_save, sender=User)
 def update_user_profile(sender, instance, created, **kwargs):
