@@ -38,9 +38,15 @@ def trainers_details(request, trainer_id):
 def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
-    return render(request, 'gym/classes_details.html', {'class': clss})
+    return render(request, 'gym/classes_details.html', {'clss': clss})
 
 
+# def classes_favourites(request, class_id):
+#     clss = Classes.objects.get(pk=class_id)
+#     selected_class = clss.get(pk=request.POST['clss'])
+#     selected_class.is_favourite = True
+#     selected_class.save()
+#     return render(request, 'gym/classes_details.html', {'clss': clss})
 
 class ClassCreate(CreateView):
     model = Classes
