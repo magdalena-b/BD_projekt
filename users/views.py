@@ -1,6 +1,7 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import SignUpForm
+from django.contrib.auth import logout
 
 def signup(request):
     if request.method == 'POST':
@@ -25,6 +26,11 @@ def show_profile(request):
     return render(request, 'show_profile.html')
 
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('login')
+    # Redirect to a success page.
 
 
 
