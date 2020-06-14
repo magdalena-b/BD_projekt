@@ -1,2 +1,15 @@
 
-{{user.username}}'s profile
+<h2> {{user.username}}'s profile </h2>
+
+
+Info:
+{{user.profile.name}}
+{{user.profile.surname}}
+
+<br>
+Your classes:
+<ul>
+ {% for clss in user.profile.classes.all %}
+ <li> {{clss.name}} - {{clss.date}} </li>
+{%endfor%} 
+</ul>

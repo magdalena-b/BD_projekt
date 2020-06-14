@@ -1,7 +1,8 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from .forms import SignUpForm, UserForm, ProfileForm
 from django.contrib.auth import logout
+import json
 
 def signup(request):
     if request.method == 'POST':
@@ -22,15 +23,33 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
+# def show_profile(request):
+#     surname = request.user.profile.surname
+#     # list_result = [clss for clss in classes_list] 
+#     # data = [{'name': clss.name, 'date': clss.date} for clss in classes_list]
+#     # classes_dict = {
+#     #     'name': classes_list
+#     # }
+#     # data = [{'name': clss.name} for clss in classes]
+#     # data = list(classes)
+#     # json.dumps( data )
+#     return render(request, 'show_profile.html', {'surname': surname})
+
+
 def show_profile(request):
-    return render(request, 'show_profile.html')
+    user_form = UserForm(request.POST, instance=request.user)
+    profile_form = ProfileForm(request.POST, instance=request.user.profile)
+    return render(request, 'show_profile.html', {
+        'user_form': user_form,
+        'profile_form': profile_form
+    })
+
 
 
 
 def logout_view(request):
     logout(request)
     return redirect('login')
-    # Redirect to a success page.
 
 
 

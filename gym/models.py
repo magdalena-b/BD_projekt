@@ -31,9 +31,16 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=500, null=True)
     surname = models.CharField(max_length=30, null=True)
+    classes = models.ManyToManyField(Classes)
+
+    def get_fields(self):
+        return [(field.name, field.value_to_string(self)) for field in Profile._meta.fields]
 
 @receiver(post_save, sender=User)
-def update_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
