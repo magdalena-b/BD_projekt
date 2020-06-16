@@ -38,27 +38,19 @@ def trainers_details(request, trainer_id):
 def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
+    #user = Profile.objects.get(user_id=request.user.id)
+    #user.classes.clear()
+    #user.save()
     return render(request, 'gym/classes_details.html', {'clss': clss})
 
 
-def favourited(request):
+def favourited(request, class_id):
+    clss = Classes.objects.get(pk=class_id)
+    user = Profile.objects.get(user_id=request.user.id)
+    user.classes.add(clss)
+    user.save()
     return render(request, 'gym/index.html')
 
-
-# maybe ok????
-# def favourited_classes(request, class_id, user_id):
-#     clss = Classes.objects.get(pk=class_id)
-#     selected_class = clss.get(pk=request.POST['clss'])
-#     user = Profile.objects.get(pk=user_id)
-#     user.classes_set.add(clss)
-#     return render(request, 'gym/classes_details.html', {'clss': clss})
-
-# def classes_favourites(request, class_id):
-#     clss = Classes.objects.get(pk=class_id)
-#     selected_class = clss.get(pk=request.POST['clss'])
-#     selected_class.is_favourite = True
-#     selected_class.save()
-#     return render(request, 'gym/classes_details.html', {'clss': clss})
 
 class ClassCreate(CreateView):
     model = Classes

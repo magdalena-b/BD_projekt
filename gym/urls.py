@@ -9,6 +9,6 @@ urlpatterns = [
     path('', views.IndexView.as_view(), name='index'),
     path('gym/trainers/<trainer_id>/', views.trainers_details, name='trainers_details'),
     path('gym/classes/<class_id>/', views.classes_details, name='classes_details'),
-    path('gym/favourited', views.IndexView.as_view(), name='index'),
+    path('gym/favourited/<class_id>', views.favourited, name='favourited'),
     path('gym/add', views.ClassCreate.as_view(), name='class-add'),
 ]
