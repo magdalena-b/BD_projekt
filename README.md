@@ -7,13 +7,14 @@ Baza danych: Oracle
 
 ## Struktura:
 
-[models.py](./gym.models.py) - modele Trainer, Classes, Profile
-[urls.py](.urls.py)
+[models.py](./gym/models.py) - modele Trainer, Classes, Profile
 
-[gym.views](./gym.views.py) - widoki dotyczące wyświetlania zajęć i trenerów, strona główna
+[urls.py](.urls.py) - nawigacja aplikacji
 
-[users.views.py](./users.views.py) - widoki dotyczące rejestracji, logowania, strona z profilem użytkownika
+[gym.views](./gym/views.py) - widoki dotyczące wyświetlania zajęć i trenerów, strona główna
 
-[gym.templates](./gym.templates) - szablony HTML stron dotyczących wyświetlania zajęć i trenerów i strony głównej
+[users.views.py](./users/views.py) - widoki dotyczące rejestracji, logowania, strona z profilem użytkownika
 
-[users.templates](./users.templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
+[gym.templates](./gym/templates) - szablony HTML stron dotyczących wyświetlania zajęć i trenerów i strony głównej
+
+[users.templates](./users/templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
