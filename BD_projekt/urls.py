@@ -16,10 +16,24 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url
+from django.contrib.auth.views import LoginView
+import django.contrib.auth.views
+from gym import views as gym_views
+from users import views as accounts_views
 
 urlpatterns = [
-    path('', include('gym.urls')),
     path('admin/', admin.site.urls),
-    path('gym/', include('gym.urls')),
-    path('accounts/', include('users.urls'))
+
+    path('', gym_views.IndexView.as_view(), name='index'),
+    path('gym/trainers/<trainer_id>/', gym_views.trainers_details, name='trainers_details'),
+    path('gym/classes/<class_id>/', gym_views.classes_details, name='classes_details'),
+    path('gym/favourited/<class_id>', gym_views.favourited, name='favourited'),
+
+
+    path('register/signup', accounts_views.signup, name='signup'),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', accounts_views.logout_view, name='logout'),
+    path('accounts/profile/', accounts_views.show_profile, name='show_profile')
+
 ]
