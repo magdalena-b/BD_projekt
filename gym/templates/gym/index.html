@@ -1,14 +1,17 @@
+{% include 'base.html' %}
 
+{% block content %}
+<div style="padding-left: 85%;">
+  Hello {{user.username}}
+</div>
 
 <ul>
-  <h1> Hello {{user.username}} lol {{user.id}} </h1>
-
+  {% if user.is_authenticated %}
   {%for class in object_list %}
   <h2> <a href="gym/classes/{{class.id}}"> {{class.name}} </a> </h2>
   {%endfor%}
-</ul>
-
-
-<button > <a href="{% url 'signup' %}">Sign up!</a> </button>
-<button > <a href="{% url 'login' %}">Log in!</a> </button>
-
+  {%endif%}
+ </ul>
+ 
+{% endblock %}
+ 
