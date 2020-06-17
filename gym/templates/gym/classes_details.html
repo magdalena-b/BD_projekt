@@ -1,8 +1,17 @@
-{{clss.trainer}} - {{clss.description}}
+{% include 'base.html' %}
+
+{% block content %}
 
 
-{{user.username}}
+<button type='submit' class="btn btn-warning">   <a href="/gym/trainers/{{trainer.id}}"> {{trainer}} </a> </button>
+
+{{clss.description}}
+
 
 <form action='/gym/favourited/{{clss.id}}' method='GET'>
-  <button type='submit'> Clickk</button>
+
+  <button type='submit' class="btn btn-dark"> Sign for class </button>
   </form>
+
+
+{% endblock %}

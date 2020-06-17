@@ -38,10 +38,11 @@ def trainers_details(request, trainer_id):
 def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
+    trainer = Trainer.objects.get(pk=clss.trainer.id)
     #user = Profile.objects.get(user_id=request.user.id)
     #user.classes.clear()
     #user.save()
-    return render(request, 'gym/classes_details.html', {'clss': clss})
+    return render(request, 'gym/classes_details.html', {'clss': clss, 'trainer': trainer})
 
 
 def favourited(request, class_id):

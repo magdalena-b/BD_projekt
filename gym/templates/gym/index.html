@@ -5,13 +5,18 @@
   Hello {{user.username}}
 </div>
 
-<ul>
+
+
+ <ul class="list-group">
   {% if user.is_authenticated %}
   {%for class in object_list %}
-  <h2> <a href="gym/classes/{{class.id}}"> {{class.name}} </a> </h2>
+  <li class="list-group-item"> <a href="gym/classes/{{class.id}}"> {{class.name}} </a></li>
   {%endfor%}
   {%endif%}
- </ul>
+</ul>
+
+
+
  
 {% endblock %}
  

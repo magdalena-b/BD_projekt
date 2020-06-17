@@ -23,6 +23,10 @@
   <li class = "nav-item active"> <a class = "nav-link" href="{% url 'signup' %}"> Sign up!</a> </li>
   <li class = "nav-item"> <a class = "nav-link" href="{% url 'login' %}">Log in! </a> </li>
   <li class = "nav-item"> <a class = "nav-link" href="{% url 'logout' %}"> Log out </a> </li>
+  <li class = "nav-item"> <a class = "nav-link" href="{% url 'index' %}"> Home </a>  </li>
+  {% if user.is_authenticated %}
+  <li class = "nav-item"> <a class = "nav-link" href="{% url 'show_profile' %}"> Your account </a>  </li>
+  {% endif %}
 </ul>
 </div>
 </nav> 
