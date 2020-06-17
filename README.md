@@ -8,7 +8,7 @@ Aplikacja dla klientów siłowni.
 ## Opis projektu
 Aplikacja pozwala na autentykację klientów siłowni. Klient może zapisywać się na zajęcia, wyświetlić listę zajęć i przeglądać strony z informacjami na temat zajęć i trenerów.
 
-Dodawanie zajęć możliwe jest po wejściu na [stronę_admina](./users/admin.py) i zalogowaniu się jako superuser.
+Dodawanie zajęć możliwe jest po wejściu na podstronę /admin i zalogowaniu się jako superuser.
 
 
 ## Struktura:
