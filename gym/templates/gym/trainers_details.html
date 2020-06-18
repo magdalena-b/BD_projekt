@@ -1,5 +1,4 @@
-{% include 'base.html' %}
-
+{% extends 'base.html' %}
 {% block content %}
 
 <h2>{{trainer}} </h2> 
@@ -10,6 +9,9 @@ Zajęcia:
     <li>{{clss.name}} - {{clss.date}} - {{clss.description}} </li>
 {%endfor%}
 
+<h3> Trainer rate:
+    {{ trainer.get_rate }}
+</h3>
 </ul>
 
 {% endblock %}

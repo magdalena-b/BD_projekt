@@ -13,6 +13,6 @@ urlpatterns = [
     #path('register/login', auth_views.login, name='login')
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
-    path('profile/', views.show_profile, name='show_profile')
-
+    path('profile/', views.show_profile, name='show_profile'),
+    path('profile/drop/<int:class_id>', views.drop_from_class, name='drop')
 ]

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <h2> Confirm dropping from class: </h2>
+    <p>{{my_class}}</p>
+    <form method='POST'>
+        {% csrf_token %}
+        <button class="btn btn-danger" type='submit'>Drop</button>
+    </form>
+
+{% endblock %}

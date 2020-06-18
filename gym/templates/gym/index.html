@@ -1,6 +1,7 @@
-{% include 'base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
+    <div>
 <div style="padding-left: 85%;">
   Hello {{user.username}}
 </div>
@@ -9,12 +10,19 @@
 
  <ul class="list-group">
   {% if user.is_authenticated %}
+      View upcomming classes:
   {%for class in object_list %}
-  <li class="list-group-item"> <a href="gym/classes/{{class.id}}"> {{class.name}} </a></li>
+  <li class="list-group-item"> <a href="gym/classes/{{class.id}}"> {{class.name}} </a>
+  </li>
+
   {%endfor%}
+      {% else %}
+      <div class="text-center">
+      Login to view content. If you don't have account sign up for free!
+      </div>
   {%endif%}
 </ul>
-
+</div>
 
 
  
