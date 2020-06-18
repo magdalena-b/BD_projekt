@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
     template_name = 'gym/index.html'
 
     def get_queryset(self):
-        return Classes.objects.raw('SELECT * FROM gym_classes where date > current_date order by date ')
+        return Classes.objects.all()
 
 
 def trainers_details(request, trainer_id):
