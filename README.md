@@ -13,7 +13,7 @@ Dodawanie zajęć możliwe jest po wejściu na podstronę /admin i zalogowaniu s
 
 ## Struktura:
 
-[models.py](./gym/models.py) - modele Trainer, Classes, Profile
+[models.py](./gym/models.py) - modele Trainer, Classes, Profile, Rate
 
 [gym.urls.py](.gym/urls.py) - nawigacja aplikacji
 [users.urls.py](.users/urls.py) - nawigacja aplikacji
