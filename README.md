@@ -15,7 +15,8 @@ Dodawanie zajęć możliwe jest po wejściu na podstronę /admin i zalogowaniu s
 
 [models.py](./gym/models.py) - modele Trainer, Classes, Profile
 
-[urls.py](.urls.py) - nawigacja aplikacji
+[gym.urls.py](.gym/urls.py) - nawigacja aplikacji
+[users.urls.py](.users/urls.py) - nawigacja aplikacji
 
 [gym.views](./gym/views.py) - widoki dotyczące wyświetlania zajęć i trenerów, strona główna
 
