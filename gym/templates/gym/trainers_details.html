@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2>{{trainer}} </h2> 
+<jumbotron> 
+<ul>
+    <li> <h2> {{trainer}} </h2> </li>
+    <li> {{trainer.email}}  </li>
+    <li> {{trainer.phone}} </li>
+</ul>    
+
+</jumbotron>
 
 Zajęcia:
 <ul>
