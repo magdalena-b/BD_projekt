@@ -4,7 +4,7 @@ from django.db.models import Avg
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 #from django.contrib.postgres.fields import ArrayField
-from datetime import datetime
+from datetime import datetime, date
 from enum import Enum
 from statistics import mean
 
@@ -92,11 +92,11 @@ class Classes(models.Model):
         return self.limit - self.get_participants_number()
 
     def name_and_date(self):
-        day_of_week = datetime.date(self.date).strftime('%A %H:%M, %-d %B %Y')
+        day_of_week = self.date.strftime('%A %H:%M, %-d %B %Y')
         return '{} - {}'.format(self.name, day_of_week)
 
     def __str__(self):
-        day_of_week = datetime.date(self.date).strftime('%A %H:%M, %-d %B %Y')
+        day_of_week = self.date.strftime('%A %H:%M, %-d %B %Y')
         return '{} - {} ({})'.format(self.name, self.description, day_of_week)
 
 
