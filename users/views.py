@@ -2,6 +2,8 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import SignUpForm, UserForm, ProfileForm
 from django.contrib.auth import logout
+from gym.models import Classes, Profile
+
 import json
 
 def signup(request):
@@ -45,6 +47,14 @@ def show_profile(request):
     })
 
 
+def drop_from_class(request, class_id):
+    my_class = Classes.objects.get(pk=class_id)
+    user = Profile.objects.get(user_id=request.user.id)
+    if request.method == 'POST':
+        user.classes.remove(my_class)
+        user.save()
+        return redirect('show_profile')
+    return render(request, 'drop_class.html', {'my_class': my_class, 'user': user})
 
 
 def logout_view(request):
