@@ -96,7 +96,8 @@ SQL> QUIT
 ```
 
 Uruchamianie istniejącego containera:
-```docker start <DB_NAME>
+```
+docker start <DB_NAME>
 ```
 
 
