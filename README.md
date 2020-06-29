@@ -32,17 +32,35 @@ Dodawanie zajęć możliwe jest po wejściu na podstronę /admin i zalogowaniu s
 Należy stworzyć konto w Docker Hub:
 https://hub.docker.com/ i uzyskać dostęp [Docker Image](https://hub.docker.com/_/oracle-database-enterprise-edition)
 
+Trzeba pobrać też narzędzia potrzebne do uruchomienia SQLPlusa:
+https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html
 
+Wybieramy
+"Instant Client Package - Basic" i "Instant Client Package - SQL*Plus" dla wersji 12.2.0.1.0.
+
+Na przykład
+oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm i oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rmp dla systemu Linux x86-64
+
+
+Wykonujemy polecenia:
+```sudo alien -i oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
+sudo alien -i oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
+sudo -- bash -c 'echo "/usr/lib/oracle/12.2/client64/lib/" > /etc/ld.so.conf.d/oracle.conf'
+sudo ldconfig
+sudo ln -s /usr/bin/sqlplus64 /usr/bin/sqlplus
+```
+
+Polecenia do utworzenia containera:
 
 ```docker login
-docker run -d -it --name lol store/oracle/database-enterprise:12.2.0.1
+docker run -d -it --name <DB_NAME> store/oracle/database-enterprise:12.2.0.1
 sudo alien -i oracle-instantclient*-basic*.rpm
 docker exec -it lol bash -c "source /home/oracle/.bashrc; sqlplus /nolog"
 sqlplus sys/Oradoc_db1@localhost/ORCLCDB.localdomain as sysdba
 ```
 
 
-W konsoli sqlplusa:
+W konsoli sqlplusa wykonujemy:
 
 ```SQL> ALTER SESSION SET CONTAINER=ORCLPDB1;
 SQL> ALTER SESSION SET "_ORACLE_SCRIPT"=true;
@@ -51,8 +69,14 @@ SQL> GRANT DBA TO django;
 SQL> QUIT
 ```
 
+Uruchamianie istniejącego containera:
+```docker start <DB_NAME>
+```
+
 
 ## Łączenie się z bazą przez DataGripa
+
+<img src="connection_datagrip.png">
 
 
 ## Diagram bazy
