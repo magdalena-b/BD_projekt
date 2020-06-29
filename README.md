@@ -53,11 +53,19 @@ SQL> QUIT
 
 
 ## Łączenie się z bazą przez DataGripa
-[users.templates](./users/templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
+
+
+## Diagram bazy
+
+<img src="diagram.png">
+
 
 ## Przewodnik po kodzie
+[users.templates](./users/templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
 
-### Z [models.py](./gym/models.py)
+
+
+### [models.py](./gym/models.py)
 
 Można tutaj zobaczyc jak tworzymy tabele korzystając z tego że django wspiera bazę oracle i wręcz zalecane jest by zmiany wprowadzać korzystając z gotowych narzędzi bez bezpośredniej modyfikacji. 
 Tworząc klasy możemy również tworzyć funkcję pomocnicze jak get_fields.
