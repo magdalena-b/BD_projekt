@@ -33,24 +33,24 @@ Profile - model profilu użytkownika, jest modelem wbudowanego modelu User, ma p
 Rate - model oceny, ma pola:
 * trainer - id ocenianego trenera (Foreign Key)
 * user - id oceniającego użytkownika (Foreign Key)
-* rate - ocena w zakresie 1-5
+ rate - ocena w zakresie 1-5
 
 RateOptions - model enumarated, "tłumaczy" oceny w zakresie 1-5 na opisy słowne
 
 ## Struktura:
 
-[models.py](./gym/models.py) - modele Trainer, Classes, Profile, Rate
+* [models.py](./gym/models.py) - modele Trainer, Classes, Profile, Rate
 
-[gym.urls.py](.gym/urls.py) - nawigacja aplikacji
-[users.urls.py](.users/urls.py) - nawigacja aplikacji
+* [gym.urls.py](.gym/urls.py) - nawigacja aplikacji
+* [users.urls.py](.users/urls.py) - nawigacja aplikacji
 
-[gym.views](./gym/views.py) - widoki dotyczące wyświetlania zajęć i trenerów, strona główna
+* [gym.views](./gym/views.py) - widoki dotyczące wyświetlania zajęć i trenerów, strona główna
 
-[users.views.py](./users/views.py) - widoki dotyczące rejestracji, logowania, strona z profilem użytkownika
+* [users.views.py](./users/views.py) - widoki dotyczące rejestracji, logowania, strona z profilem użytkownika
 
-[gym.templates](./gym/templates) - szablony HTML stron dotyczących wyświetlania zajęć i trenerów i strony głównej
+* [gym.templates](./gym/templates) - szablony HTML stron dotyczących wyświetlania zajęć i trenerów i strony głównej
 
-[users.templates](./users/templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
+* [users.templates](./users/templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
 
 
 ## Instrukcja do łączenia się z Oraclem przez Dockera
