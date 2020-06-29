@@ -64,12 +64,15 @@ https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloa
 Wybieramy
 "Instant Client Package - Basic" i "Instant Client Package - SQL*Plus" dla wersji 12.2.0.1.0.
 
-Na przykład
-oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm i oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rmp dla systemu Linux x86-64
-
+Na przykład dla systemu Linux x86-64 wybieramy:
+```
+oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm 
+oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rmp 
+```
 
 Wykonujemy polecenia:
-```sudo alien -i oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
+```
+sudo alien -i oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm
 sudo alien -i oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm
 sudo -- bash -c 'echo "/usr/lib/oracle/12.2/client64/lib/" > /etc/ld.so.conf.d/oracle.conf'
 sudo ldconfig
@@ -78,7 +81,8 @@ sudo ln -s /usr/bin/sqlplus64 /usr/bin/sqlplus
 
 Polecenia do utworzenia containera:
 
-```docker login
+```
+docker login
 docker run -d -it --name <DB_NAME> store/oracle/database-enterprise:12.2.0.1
 sudo alien -i oracle-instantclient*-basic*.rpm
 docker exec -it lol bash -c "source /home/oracle/.bashrc; sqlplus /nolog"
@@ -88,7 +92,8 @@ sqlplus sys/Oradoc_db1@localhost/ORCLCDB.localdomain as sysdba
 
 W konsoli sqlplusa wykonujemy:
 
-```SQL> ALTER SESSION SET CONTAINER=ORCLPDB1;
+```
+SQL> ALTER SESSION SET CONTAINER=ORCLPDB1;
 SQL> ALTER SESSION SET "_ORACLE_SCRIPT"=true;
 SQL> CREATE USER django IDENTIFIED BY django;
 SQL> GRANT DBA TO django;
