@@ -41,8 +41,7 @@ RateOptions - model enumarated, "tłumaczy" oceny w zakresie 1-5 na opisy słown
 
 * [models.py](./gym/models.py) - modele Trainer, Classes, Profile, Rate
 
-* [gym.urls.py](.gym/urls.py) - nawigacja aplikacji
-* [users.urls.py](.users/urls.py) - nawigacja aplikacji
+* [urls.py](./BD_projekt/urls.py) - nawigacja aplikacji
 
 * [gym.views](./gym/views.py) - widoki dotyczące wyświetlania zajęć i trenerów, strona główna
 
