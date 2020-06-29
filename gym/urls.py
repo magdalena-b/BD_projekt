@@ -9,5 +9,5 @@ urlpatterns = [
     path('gym/trainers/<trainer_id>/', views.trainers_details, name='trainers_details'),
     path('gym/classes/<class_id>/', views.classes_details, name='classes_details'),
     path('gym/favourited/<class_id>', views.favourited, name='favourited'),
-    path('gym/rate/<int:trainer_id>', views.add_rate, name='rate'),
+    path('gym/add_rate/<int:trainer_id>', views.add_rate, name='rate'),
 ]

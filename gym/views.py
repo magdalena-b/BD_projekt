@@ -1,3 +1,4 @@
+from datetime import datetime, date, time
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
@@ -23,10 +24,17 @@ from .models import Trainer, Classes, Profile, Rate
 class IndexView(generic.ListView):
     template_name = 'gym/index.html'
     def get_queryset(self):
-        return Classes.objects.all()
+        now = datetime.now()
+        future_filter = Classes.objects.filter(date__gte=now)
+        return future_filter
 
     # def get_queryset(self):
     #     return Classes.objects.raw('SELECT * FROM gym_classes where date > current_date order by date ')
+
+
+def current_date(request):
+    now = datetime.time.now()
+    print("Date: "+ now.strftime("%Y-%m-%d"))
 
 
 def trainers_details(request, trainer_id):

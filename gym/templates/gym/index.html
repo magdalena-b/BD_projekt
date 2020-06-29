@@ -4,7 +4,7 @@
 {% if user.is_authenticated %}
     <div>
 <div style="padding-left: 85%;">
-  <h3> Hello {{user.username}} </h3>
+  <h3> Hello {{user.username}}. Today is  </h3>
   {% endif %}
 </div>
 
@@ -14,7 +14,7 @@
   {% if user.is_authenticated %}
       View upcomming classes:
   {%for class in object_list %}
-  <li class="list-group-item"> <a href="gym/classes/{{class.id}}"> {{class.name}} </a>
+  <li class="list-group-item"> <a href="gym/classes/{{class.id}}"> {{class.name}} - {{class.date}} </a>
   </li>
 
   {%endfor%}
