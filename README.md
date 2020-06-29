@@ -26,14 +26,14 @@ Classes - model zajęć, ma pola:
 
 Profile - model profilu użytkownika, jest modelem wbudowanego modelu User, ma pola:
 * user - relacja jeden-to-jeden, łączy model Profile z modelem User, ułatwia to autentykację
-* name
-* surname
+* name - imię
+* surname - nazwisko
 * classes - relacja wiele-do-wielu, lista zajęć użytkownika (przeszłych i przyszłych)
 
 Rate - model oceny, ma pola:
 * trainer - id ocenianego trenera (Foreign Key)
 * user - id oceniającego użytkownika (Foreign Key)
- rate - ocena w zakresie 1-5
+* rate - ocena w zakresie 1-5
 
 RateOptions - model enumarated, "tłumaczy" oceny w zakresie 1-5 na opisy słowne
 
