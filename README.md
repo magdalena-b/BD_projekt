@@ -6,10 +6,36 @@ Aplikacja dla klientów siłowni.
 - Baza danych: Oracle
 
 ## Opis projektu
-Aplikacja pozwala na autentykację klientów siłowni. Klient może zapisywać się na zajęcia, wyświetlić listę zajęć i przeglądać strony z informacjami na temat zajęć i trenerów.
+Aplikacja pozwala na autentykację klientów siłowni. Klient może zapisywać się na zajęcia, oceniać prowadząceog zajęć, w których brał udział i wyświetlić listę zajęć i przeglądać strony z informacjami na temat zajęć i trenerów.
 
 Dodawanie zajęć możliwe jest po wejściu na podstronę /admin i zalogowaniu się jako superuser.
 
+## Modele
+Trainer - model trenera, ma pola:
+* name
+* surname
+* email
+* phone
+
+Classes - model zajęć, ma pola:
+* trainer - trener prowadzący zajęcia (Foreign Key)
+* date - data zajęć w formacie
+* name - nazwa
+* description - opis zajęć
+* limit - limit uczestników; po osiągnięciu limitu zapis na zajęcia zamyka się
+
+Profile - model profilu użytkownika, jest modelem wbudowanego modelu User, ma pola:
+* user - relacja jeden-to-jeden, łączy model Profile z modelem User, ułatwia to autentykację
+* name
+* surname
+* classes - relacja wiele-do-wielu, lista zajęć użytkownika (przeszłych i przyszłych)
+
+Rate - model oceny, ma pola:
+* trainer - id ocenianego trenera (Foreign Key)
+* user - id oceniającego użytkownika (Foreign Key)
+* rate - ocena w zakresie 1-5
+
+RateOptions - model enumarated, "tłumaczy" oceny w zakresie 1-5 na opisy słowne
 
 ## Struktura:
 

@@ -76,7 +76,6 @@ class Classes(models.Model):
     date = models.DateTimeField()
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=250, default='class description', editable=True)
-    is_favourite = models.BooleanField(default=False)
     limit = models.PositiveIntegerField(null=True, default=15)
 
     def get_participants_number(self):
