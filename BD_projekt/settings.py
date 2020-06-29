@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bootstrap4',
-    'widget_tweaks',
+    'bootstrap4'
 ]
+
+#'django_extensions'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,12 +78,42 @@ WSGI_APPLICATION = 'BD_projekt.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'localhost/ORCLPDB1.localdomain',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'TEST': {
+            'USER': 'default_test',
+            'TBLSPACE': 'default_test_tbls',
+            'TBLSPACE_TMP': 'default_test_tbls_tmp',
+        },
+    },
+    'other': {
+        'ENGINE': 'django.db.backends.oracle',
+        'NAME': 'localhost/ORCLPDB1.localdomain',
+        'USER': 'django',
+        'PASSWORD': 'django',
+        'TEST': {
+            'USER': 'other_test',
+            'TBLSPACE': 'other_test_tbls',
+            'TBLSPACE_TMP': 'other_test_tbls_tmp',
+        },
+    },
 }
+
+
+
 
 
 # Password validation
