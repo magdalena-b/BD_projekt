@@ -110,7 +110,16 @@ DATABASES = {
             'TBLSPACE_TMP': 'other_test_tbls_tmp',
         },
     },
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.oracle',
+#         'NAME': 'orcl',
+#         'USER': 'system',
+#         'PASSWORD': '********',
+#         'HOST': 'localhost',
+#         'PORT': '1521',
+#     }
+# }
 
 
 
