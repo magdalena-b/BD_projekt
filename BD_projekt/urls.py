@@ -29,9 +29,7 @@ urlpatterns = [
     path('gym/trainers/<trainer_id>/', gym_views.trainers_details, name='trainers_details'),
     path('gym/classes/<class_id>/', gym_views.classes_details, name='classes_details'),
     path('gym/favourited/<class_id>', gym_views.favourited, name='favourited'),
-    path('gym/add_rate/<int:trainer_id>', gym_views.add_rate, name='rate'),
-    #path('gym/add_rate_class/<int:class_id>', gym_views.add_rate_class, name='rate'),
-
+    path('gym/add_rate/<int:class_id>', gym_views.add_rate, name='rate'),
 
     path('register/signup', accounts_views.signup, name='signup'),
     path('login/', LoginView.as_view(), name='login'),

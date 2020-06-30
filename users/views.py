@@ -31,29 +31,27 @@ def show_profile(request):
     user_form = UserForm(request.POST, instance=request.user)
     profile_form = ProfileForm(request.POST, instance=request.user.profile)
 
-    allowed_rating = []
+    # user = request.user
+    # user_id = user.id
+    # User = Profile.objects.get(pk=user_id)
+    # #classes = User.classes.all()
+    # classes = User.classes.all()
+    # rated_clss = []
+    # #not_rated_clss = user.classes
 
-    # for clss in profile_form.classes:
-    #     if not check_if_rated(request, clss):
-    #         allowed_rating.append(clss)
+    # for clss in classes:
+    #     rates = clss.rate_set.all()
+    #     for rate in rates:
+    #         if(rate.user.id == user.id):
+    #             for trainer_clss in rate.trainer.id.classes:
+    #                 rated_clss.append(trainer_clss)
+
 
     return render(request, 'show_profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
-        #'clss': clss
     })
 
-
-# def check_if_rated(request, class_id):
-#     clss = Classes.objects.get(pk=class_id)
-#     trainer = clss.trainer.id
-#     rates = trainer.rate_set.all()
-#     user = Profile.objects.get(pk=request.user.id)
-#     rated = False
-#     for rate in rates:
-#         if(rate.user.id == user.id):
-#             rated = True
-#     return rated
 
 
 def drop_from_class(request, class_id):

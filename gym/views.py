@@ -6,8 +6,10 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from django.views import generic
 from django.views.generic.edit import CreateView
+from django.contrib import messages
 from .templates.gym.forms import UserForm, AddRateForm
 from .models import Trainer, Classes, Profile, Rate
+
 
 # def index(request):
 
@@ -94,33 +96,11 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
-# def add_rate_class(request, class_id):
-#     clss = Classes.objects.get(pk=class_id)
-#     user = request.user
-#     #rated = False
-#     #rated = trainer.get_all_rates(user)
-#     if(clss.get_all_rates(user)):
-#         return redirect('/accounts/profile')
-
-#     if request.method == 'POST':
-#         form = AddRateForm(request.POST)
-#         if form.is_valid():
-#             Rate.objects.create(
-#                 user=Profile.objects.get(user=request.user.id),
-#                 rate=form.cleaned_data['rate'],
-#                 clss=Classes.objects.get(pk=class_id)
-#             )
-#             return HttpResponseRedirect(f'/accounts/profile')
-#     else:
-#         form = AddRateForm()
-
-#     return render(request, 'gym/add_rate.html', {'form': form, 'clss': clss, 'user': user})
-
-
-def check_if_rated(request, trainer_id):
-    trainer = Trainer.objects.get(pk=trainer_id)
+def check_if_rated(request, class_id):
+    clss = Classes.objects.get(pk=class_id)
     user = request.user
-    rates = trainer.rate_set.all()
+    #rates = trainer.rate_set.all()
+    rates = clss.rate_set.all()
     user = Profile.objects.get(pk=request.user.id)
     rated = False
     for rate in rates:
@@ -129,10 +109,11 @@ def check_if_rated(request, trainer_id):
     return rated
 
 
-def add_rate(request, trainer_id):
-    trainer = Trainer.objects.get(pk=trainer_id)
+def add_rate(request, class_id):
+    clss = Classes.objects.get(pk=class_id)
+    trainer = clss.trainer
     user = request.user
-    rated = check_if_rated(request, trainer_id)
+    rated = check_if_rated(request, class_id)
     if(rated):
         return redirect('/accounts/profile')
 
@@ -142,11 +123,12 @@ def add_rate(request, trainer_id):
             Rate.objects.create(
                 user=Profile.objects.get(user=request.user.id),
                 rate=form.cleaned_data['rate'],
-                trainer=Trainer.objects.get(pk=trainer_id),
+                trainer=trainer,
+                classes=Classes.objects.get(pk=class_id)
             )
             return HttpResponseRedirect(f'/accounts/profile')
     else:
         form = AddRateForm()
 
-    return render(request, 'gym/add_rate.html', {'form': form, 'trainer': trainer, 'user': user})
+    return render(request, 'gym/add_rate.html', {'form': form, 'trainer': trainer, 'user': user, 'clss': clss})
 
