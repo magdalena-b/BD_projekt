@@ -143,6 +143,10 @@ class Trainer(models.Model):
         closest_rate = int(round(mean_rate, 2))
         if(closest_rate > 0): closest_rate = closest_rate - 1
         return f'{round(mean_rate, 2)}-{R_O[closest_rate][1]}'
+
+
+
+
 ```
 
 ```python

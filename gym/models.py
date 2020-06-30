@@ -7,7 +7,7 @@ from django.dispatch import receiver
 from datetime import datetime, date
 from enum import Enum
 from statistics import mean
-
+#from djangoratings.fields import RatingField
 
 class ChoiceEnum(Enum):
 
@@ -70,6 +70,14 @@ class Trainer(models.Model):
         if(closest_rate > 0): closest_rate = closest_rate - 1
         return f'{round(mean_rate, 2)}-{R_O[closest_rate][1]}'
 
+    def get_all_rates(self, user_id):
+        users = self.rate_set.all()
+        rated = False
+        for user in users:
+            if(user.user == user_id):
+                rated = True
+        return rated
+
 
 class Classes(models.Model):
     trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
@@ -77,6 +85,8 @@ class Classes(models.Model):
     name = models.CharField(max_length=30)
     description = models.TextField(max_length=250, default='class description', editable=True)
     limit = models.PositiveIntegerField(null=True, default=15)
+    rate = models.ManyToManyField(User)
+    #rating = RatingField(range=5)
 
     def get_participants_number(self):
         signed_number = self.profile_set.all().count()
@@ -98,12 +108,12 @@ class Classes(models.Model):
         day_of_week = self.date.strftime('%A %H:%M, %d %B %Y')
         return '{} - {} ({})'.format(self.name, self.description, day_of_week)
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.TextField(max_length=500, null=True)
     surname = models.CharField(max_length=30, null=True)
     classes = models.ManyToManyField(Classes)
+    #rated_classes = models.ManyToManyField(Classes)
 
     def get_future_classes(self):
         return self.classes.filter(date__gt=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
@@ -129,9 +139,8 @@ class Rate(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
     rate = models.IntegerField(choices=R_O)
 
+
     class Meta:
         constraints = [
             models.UniqueConstraint(fields=['trainer', 'user'], name='one_time_rating_trainer'),
         ]
-
-

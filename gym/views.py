@@ -47,9 +47,6 @@ def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
     trainer = Trainer.objects.get(pk=clss.trainer.id)
-    #user = Profile.objects.get(user_id=request.user.id)
-    #user.classes.clear()
-    #user.save()
     return render(request, 'gym/classes_details.html', {'clss': clss, 'trainer': trainer})
 
 
@@ -97,7 +94,48 @@ class UserFormView(View):
         return render(request, self.template_name, {'form': form})
 
 
+# def add_rate_class(request, class_id):
+#     clss = Classes.objects.get(pk=class_id)
+#     user = request.user
+#     #rated = False
+#     #rated = trainer.get_all_rates(user)
+#     if(clss.get_all_rates(user)):
+#         return redirect('/accounts/profile')
+
+#     if request.method == 'POST':
+#         form = AddRateForm(request.POST)
+#         if form.is_valid():
+#             Rate.objects.create(
+#                 user=Profile.objects.get(user=request.user.id),
+#                 rate=form.cleaned_data['rate'],
+#                 clss=Classes.objects.get(pk=class_id)
+#             )
+#             return HttpResponseRedirect(f'/accounts/profile')
+#     else:
+#         form = AddRateForm()
+
+#     return render(request, 'gym/add_rate.html', {'form': form, 'clss': clss, 'user': user})
+
+
+def check_if_rated(request, trainer_id):
+    trainer = Trainer.objects.get(pk=trainer_id)
+    user = request.user
+    rates = trainer.rate_set.all()
+    user = Profile.objects.get(pk=request.user.id)
+    rated = False
+    for rate in rates:
+        if(rate.user.id == user.id):
+            rated = True
+    return rated
+
+
 def add_rate(request, trainer_id):
+    trainer = Trainer.objects.get(pk=trainer_id)
+    user = request.user
+    rated = check_if_rated(request, trainer_id)
+    if(rated):
+        return redirect('/accounts/profile')
+
     if request.method == 'POST':
         form = AddRateForm(request.POST)
         if form.is_valid():
@@ -110,5 +148,5 @@ def add_rate(request, trainer_id):
     else:
         form = AddRateForm()
 
-    return render(request, 'gym/add_rate.html', {'form': form})
+    return render(request, 'gym/add_rate.html', {'form': form, 'trainer': trainer, 'user': user})
 

@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from .forms import SignUpForm, UserForm, ProfileForm
 from django.contrib.auth import logout
 from gym.models import Classes, Profile
+from django.views import generic
 
 import json
 
@@ -25,26 +26,34 @@ def signup(request):
     return render(request, 'signup.html', {'form': form})
 
 
-# def show_profile(request):
-#     surname = request.user.profile.surname
-#     # list_result = [clss for clss in classes_list] 
-#     # data = [{'name': clss.name, 'date': clss.date} for clss in classes_list]
-#     # classes_dict = {
-#     #     'name': classes_list
-#     # }
-#     # data = [{'name': clss.name} for clss in classes]
-#     # data = list(classes)
-#     # json.dumps( data )
-#     return render(request, 'show_profile.html', {'surname': surname})
-
 
 def show_profile(request):
     user_form = UserForm(request.POST, instance=request.user)
     profile_form = ProfileForm(request.POST, instance=request.user.profile)
+
+    allowed_rating = []
+
+    # for clss in profile_form.classes:
+    #     if not check_if_rated(request, clss):
+    #         allowed_rating.append(clss)
+
     return render(request, 'show_profile.html', {
         'user_form': user_form,
         'profile_form': profile_form
+        #'clss': clss
     })
+
+
+# def check_if_rated(request, class_id):
+#     clss = Classes.objects.get(pk=class_id)
+#     trainer = clss.trainer.id
+#     rates = trainer.rate_set.all()
+#     user = Profile.objects.get(pk=request.user.id)
+#     rated = False
+#     for rate in rates:
+#         if(rate.user.id == user.id):
+#             rated = True
+#     return rated
 
 
 def drop_from_class(request, class_id):
@@ -60,70 +69,3 @@ def drop_from_class(request, class_id):
 def logout_view(request):
     logout(request)
     return redirect('index')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# from django.shortcuts import render, redirect
-# from django.contrib.auth import login
-
-# from gym.models import User_Account
-# from .forms import SignUpForm
-
-
-# def signup(request):
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             print(form.cleaned_data['name'])
-#             user_account = User_Account(user=user, name=form.cleaned_data['name'], surname=form.cleaned_data['surname'])
-#             user_account.save()
-#             login(request, user)
-#             return redirect('start')
-#     else:
-#         form = SignUpForm()
-#     return render(request, 'register/signup.html', {'form': form})
-
-
-
-
-
-
-
-
-
-
-
-
-# from django.shortcuts import render, redirect
-# from django.contrib.auth import login
-
-# from home.models import UserData
-# from .forms import SignUpForm
-
-
-# def signup(request):
-#     if request.method == 'POST':
-#         form = SignUpForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             print(form.cleaned_data['name'])
-#             user_data = UserData(username=user, name=form.cleaned_data['name'], surname=form.cleaned_data['surname'],
-#                                  current_cvs=[])
-#             user_data.save()
-#             login(request, user)
-#             return redirect('start')
-#     else:
-#         form = SignUpForm()
-#     return render(request, 'accounts/signup.html', {'form': form})

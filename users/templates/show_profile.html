@@ -23,6 +23,9 @@ Your past classes:
  {% for clss in user.profile.get_past_classes %}
  <li class="list-group-item">
      <a href="/gym/classes/{{clss.id}}"> {{clss.name_and_date}} </a>
+
+    <h3> {{user.profile.rate}}  </h3>
+
      {% if not user.profile.rate %}
      <a class="btn btn-success" href="/gym/add_rate/{{ clss.trainer.id }}"> Add rate </a>
  {% endif %}
