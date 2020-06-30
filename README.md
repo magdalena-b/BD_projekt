@@ -84,7 +84,6 @@ Polecenia do utworzenia containera:
 docker login
 docker run -d -it --name <DB_NAME> store/oracle/database-enterprise:12.2.0.1
 sudo alien -i oracle-instantclient*-basic*.rpm
-docker exec -it lol bash -c "source /home/oracle/.bashrc; sqlplus /nolog"
 sqlplus sys/Oradoc_db1@localhost/ORCLCDB.localdomain as sysdba
 ```
 
