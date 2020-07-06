@@ -149,7 +149,6 @@ class Profile(models.Model):
         return rated_classes
 
     def get_not_rated_classes(self):
-        #classes = self.classes.all()
         classes = self.get_past_classes()
         not_rated_classes = []
         for c in classes:

@@ -66,7 +66,7 @@ Wybieramy
 Na przykład dla systemu Linux x86-64 wybieramy:
 ```
 oracle-instantclient12.2-basic-12.2.0.1.0-1.x86_64.rpm 
-oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rmp 
+oracle-instantclient12.2-sqlplus-12.2.0.1.0-1.x86_64.rpm 
 ```
 
 Wykonujemy polecenia:
@@ -115,7 +115,6 @@ docker start <DB_NAME>
 
 
 ## Przewodnik po kodzie
-[users.templates](./users/templates) - szablony HTML stron dotyczących rejestracji, logowania i strony z profilem użytkownika
 
 
 
@@ -210,7 +209,9 @@ Mozna równiez dodawać constrainty uniwmożliwiające wprowadzenie złych danyc
 class Rate(models.Model):
     trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    classes = models.ForeignKey(Classes, on_delete=models.CASCADE)
     rate = models.IntegerField(choices=R_O)
+
 
     class Meta:
         constraints = [
@@ -218,7 +219,7 @@ class Rate(models.Model):
         ]
 ```
 
-Do danych widoków możemy przekazywać potrzebne nam elementy z bazy np wtybierając metodą get która jest równoażna zapytaniu SELECT * FROM ... WHERE
+Do danych widoków możemy przekazywać potrzebne nam elementy z bazy -  na przykład wybierając obiekt metodą get, która jest równoważna zapytaniu SELECT * FROM ... WHERE
 ```python
 def trainers_details(request, trainer_id):
 
