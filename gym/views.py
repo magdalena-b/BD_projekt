@@ -30,9 +30,6 @@ class IndexView(generic.ListView):
         future_filter = Classes.objects.filter(date__gte=now)
         return future_filter
 
-    # def get_queryset(self):
-    #     return Classes.objects.raw('SELECT * FROM gym_classes where date > current_date order by date ')
-
 
 def current_date(request):
     now = datetime.time.now()
@@ -49,7 +46,14 @@ def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
     trainer = Trainer.objects.get(pk=clss.trainer.id)
-    return render(request, 'gym/classes_details.html', {'clss': clss, 'trainer': trainer})
+    user = Profile.objects.get(pk=request.user.id)
+    can_sign = True
+
+    profiles = clss.profile_set.all()
+    for p in profiles:
+        if(p.id == user.id):
+            can_sign = False
+    return render(request, 'gym/classes_details.html', {'clss': clss, 'trainer': trainer, 'can_sign': can_sign})
 
 
 def favourited(request, class_id):
@@ -57,7 +61,7 @@ def favourited(request, class_id):
     user = Profile.objects.get(user_id=request.user.id)
     user.classes.add(clss)
     user.save()
-    return render(request, 'gym/index.html')
+    return redirect('/accounts/profile')
 
 
 class ClassCreate(CreateView):

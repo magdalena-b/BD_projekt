@@ -64,7 +64,7 @@ class Trainer(models.Model):
     def get_rate(self):
         rates = self.rate_set.all()
         if len(rates) <= 0:
-            return '<no rates yet>'
+            return "This trainer doesn't have any rates yet!"
         mean_rate = mean(item.rate for item in rates)
         closest_rate = int(round(mean_rate, 2))
         if(closest_rate > 0): closest_rate = closest_rate - 1
@@ -109,7 +109,7 @@ class Classes(models.Model):
     def get_rate(self):
         rates = self.rate_set.all()
         if len(rates) <= 0:
-            return '<no rates yet>'
+            return "This class doesn't have any rates yet!"
         mean_rate = mean(item.rate for item in rates)
         closest_rate = int(round(mean_rate, 2))
         if(closest_rate > 0): closest_rate = closest_rate - 1
@@ -149,7 +149,8 @@ class Profile(models.Model):
         return rated_classes
 
     def get_not_rated_classes(self):
-        classes = self.classes.all()
+        #classes = self.classes.all()
+        classes = self.get_past_classes()
         not_rated_classes = []
         for c in classes:
             not_rated_classes.append(c)
@@ -160,6 +161,13 @@ class Profile(models.Model):
                 if(rate.user.id == self.id):
                         not_rated_classes.remove(rate.classes)
         return not_rated_classes
+
+    def already_signed(self, class_id):
+        classes = self.classes.all()
+        for c in classes:
+            if(c.id == class_id):
+                return True
+        return False
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

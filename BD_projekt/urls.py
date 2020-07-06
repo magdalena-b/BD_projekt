@@ -35,6 +35,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', accounts_views.logout_view, name='logout'),
     path('accounts/profile/', accounts_views.show_profile, name='show_profile'),
-    path('profile/drop/<int:class_id>', accounts_views.drop_from_class, name='drop')
+    path('accounts/profile/drop/<int:class_id>', accounts_views.drop_from_class, name='drop')
 
 ]

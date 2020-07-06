@@ -31,22 +31,6 @@ def show_profile(request):
     user_form = UserForm(request.POST, instance=request.user)
     profile_form = ProfileForm(request.POST, instance=request.user.profile)
 
-    # user = request.user
-    # user_id = user.id
-    # User = Profile.objects.get(pk=user_id)
-    # #classes = User.classes.all()
-    # classes = User.classes.all()
-    # rated_clss = []
-    # #not_rated_clss = user.classes
-
-    # for clss in classes:
-    #     rates = clss.rate_set.all()
-    #     for rate in rates:
-    #         if(rate.user.id == user.id):
-    #             for trainer_clss in rate.trainer.id.classes:
-    #                 rated_clss.append(trainer_clss)
-
-
     return render(request, 'show_profile.html', {
         'user_form': user_form,
         'profile_form': profile_form

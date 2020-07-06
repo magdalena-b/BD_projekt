@@ -3,17 +3,18 @@
 
 <h2> {{user.username}}'s profile </h2>
 
-
-Info:
+<div style="padding-left: 90%" >
 {{user.profile.name}}
 {{user.profile.surname}}
-
 <br>
+{{user.email}}
+</div>
+
     <ul>
 
 Your upcoming classes:
  {% for clss in user.profile.get_future_classes %}
- <li class="list-group-item">
+ <li class="list-group-item" style="padding-right: 5%;">
      <a href="/gym/classes/{{clss.id}}"> {{clss.name_and_date}} </a>
      <a class="btn btn-danger" href="/accounts/profile/drop/{{ clss.id }}"> Drop </a>
  </li>
