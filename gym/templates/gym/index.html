@@ -3,7 +3,7 @@
 {% block content %}
 {% if user.is_authenticated %}
     <div>
-<div style="padding-left: 90%;">
+<div style="padding-left: 85%;">
   <h3> Hello {{user.username}}!</h3>
   {% endif %}
 </div>
@@ -12,7 +12,7 @@
 
  <ul class="list-group">
   {% if user.is_authenticated %}
-      View upcoming classes:
+      <h3>View upcoming classes:</h3>
   {%for class in object_list %}
   <li class="list-group-item"> <a href="gym/classes/{{class.id}}"> {{class.name}} - {{class.date}} </a>
   </li>
