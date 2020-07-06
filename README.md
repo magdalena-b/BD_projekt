@@ -33,6 +33,7 @@ Profile - model profilu użytkownika, jest modelem wbudowanego modelu User, ma p
 Rate - model oceny, ma pola:
 * trainer - id ocenianego trenera (Foreign Key)
 * user - id oceniającego użytkownika (Foreign Key)
+* classes - id ocenianych zajęć (Foreign Key)
 * rate - ocena w zakresie 1-5
 
 RateOptions - model enumarated, "tłumaczy" oceny w zakresie 1-5 na opisy słowne
