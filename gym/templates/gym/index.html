@@ -1,16 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% if user.is_authenticated %}
-    <div>
-<div style="padding-left: 85%;">
-  <h3> Hello {{user.username}}!</h3>
-  {% endif %}
-</div>
 
 
 
- <ul class="list-group">
+ <ul class="list-group" style = "padding-left: 2%;">
   {% if user.is_authenticated %}
       <h3>View upcoming classes:</h3>
   {%for class in object_list %}
@@ -24,7 +18,7 @@
       </div>
   {%endif%}
 </ul>
-</div>
+
 
 
  

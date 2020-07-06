@@ -18,7 +18,13 @@ body{
 
   {% load bootstrap4 %}
 
-  <div class="jumbotron"> <h2> Diamond Gym </h2> </div>
+  <div class="jumbotron"> <h2> Diamond Gym </h2> 
+    {% if user.is_authenticated %}
+
+    <h3 style="padding-left: 85%;"> Hello {{user.username}}!</h3>
+    {% endif %}
+  
+  </div>
 
 
 <nav class="navbar nav-pills navbar-expand-sm bg-light navbar-dark bg-dark sticky-top menu">
@@ -41,7 +47,7 @@ body{
 </nav> 
 
 
-    <div class="container mt-3" style="margin-left:30px;margin-right:30px;">
+    <div >
         {% block content %}
         {% endblock %}
     </div>

@@ -104,15 +104,30 @@ Uruchamianie istniejącego containera:
 docker start <DB_NAME>
 ```
 
+Projekt uruchamiamy:
+```
+python manage.py runserver
+```
+
+
 
 ## Łączenie się z bazą przez DataGripa
 
 <img src="connection_datagrip.png">
 
+<img src="select_from_classes.png">
 
 ## Diagram bazy
 
 <img src="diagram.png">
+
+
+
+## Wygląd aplikacji
+
+<img src="index.png">
+
+<img src="show_profile.png">
 
 
 ## Przewodnik po kodzie

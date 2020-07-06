@@ -10,7 +10,7 @@
 
 
 <br> <br>
-Zajęcia:
+<p style="padding-left: 1%;">Zajęcia:</p>
 
 {%for clss in trainer.classes_set.all%}
     <li class="list-group-item">  <a href="/gym/classes/{{clss.id}}"> {{clss.name}} </a> - {{clss.date}} - {{clss.description}} </li>

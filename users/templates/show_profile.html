@@ -3,17 +3,16 @@
 
 
 
-<div style="padding-left: 75%" >
-<h1> {{user.username}}'s profile </h1>
-<h5>{{user.profile.name}}
+<div style="padding-left: 85%" >
+<h4>{{user.profile.name}}
 {{user.profile.surname}}
 <br>
-{{user.email}} </h5>
+{{user.email}} </h4>
 </div>
 
 
 
-<ul style="padding-left: 0%;">
+<ul style="padding-left: 2%;">
 <div> 
 <h3>Your upcoming classes: </h3>
  {% for clss in user.profile.get_future_classes %}
