@@ -1,29 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<jumbotron> 
-<ul>
-    <li> <h2> {{trainer}} </h2> </li>
-    <li> {{trainer.email}}  </li>
-    <li> {{trainer.phone}} </li>
-</ul>    
 
-</jumbotron>
 
+    <li class="list-group-item"> <h2> {{trainer}} </h2>  </li>
+    <li class="list-group-item"> Email: {{trainer.email}}  </li>
+    <li class="list-group-item"> Telefon: {{trainer.phone}} </li>
+    <li class="list-group-item"> Ocena: {{ trainer.get_rate }} </li>
+
+
+<br> <br>
 Zajęcia:
-<ul>
+
 {%for clss in trainer.classes_set.all%}
-    <li>{{clss.name}} - {{clss.date}} - {{clss.description}} </li>
+    <li class="list-group-item">  <a href="/gym/classes/{{clss.id}}"> {{clss.name}} </a> - {{clss.date}} - {{clss.description}} </li>
 {%endfor%}
 
-<h3> Trainer rate:
-    {{ trainer.get_rate }}
-</h3>
-</ul>
 
-<h3>
-    {{trainer.get_all_rates}}
-</h3>
+<br> <br>
+
+
 
 
 {% endblock %}

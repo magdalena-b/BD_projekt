@@ -2,24 +2,26 @@
 {% block content %}
 
 
-<button type='submit' class="btn btn-warning">   <a href="/gym/trainers/{{trainer.id}}"> {{trainer}} </a> </button>
 
-{{clss.name}}
 
-{{clss.description}}
+<li class="list-group-item"> <h2> {{clss.name}} </h2>  </li>
+<li class="list-group-item"> {{clss.description}}  </li>
+<li class="list-group-item"><a href="/gym/trainers/{{trainer.id}}"> {{trainer}} </a> </li>
+<li class="list-group-item"> <h3> Ocena: {{clss.get_rate}} </h3> </li>
+
+
+
+
+
 
 {% if can_sign %}
 <form action='/gym/favourited/{{clss.id}}' method='GET'>
 
     <h4>Places left: {{ clss.seats_left }}</h4>
-    {% if clss.can_sign%}
   <button type='submit' class="btn btn-dark"> Sign for class </button>
-{% endif %}
   </form>
 {%endif%}
 
-<h3>
-    {{clss.get_rate}}
-</h3>
+
 
 {% endblock %}

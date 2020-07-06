@@ -1,35 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h2> {{user.username}}'s profile </h2>
 
-<div style="padding-left: 90%" >
-{{user.profile.name}}
+
+<div style="padding-left: 75%" >
+<h1> {{user.username}}'s profile </h1>
+<h5>{{user.profile.name}}
 {{user.profile.surname}}
 <br>
-{{user.email}}
+{{user.email}} </h5>
 </div>
 
-    <ul>
 
-Your upcoming classes:
+
+<ul style="padding-left: 0%;">
+<div> 
+<h3>Your upcoming classes: </h3>
  {% for clss in user.profile.get_future_classes %}
- <li class="list-group-item" style="padding-right: 5%;">
+ <li class="list-group-item">
      <a href="/gym/classes/{{clss.id}}"> {{clss.name_and_date}} </a>
      <a class="btn btn-danger" href="/accounts/profile/drop/{{ clss.id }}"> Drop </a>
  </li>
+</div>
 
 {%endfor%}
-Your past classes:
+<h3>Your past classes: </h3>
+<div>
  {% for clss in user.profile.get_not_rated_classes %}
  <li class="list-group-item">
      <a href="/gym/classes/{{clss.id}}"> {{clss.name_and_date}} </a>
 
      <a class="btn btn-success" href="/gym/add_rate/{{ clss.id }}"> Add rate </a>
  </li>
-
+</div>
 {%endfor%}
-</ul>
+
 
  {% for clss in user.profile.get_rated_classes %}
  <li class="list-group-item">
@@ -37,6 +42,7 @@ Your past classes:
  </li>
 
 {%endfor%}
+
 </ul>
 
 
