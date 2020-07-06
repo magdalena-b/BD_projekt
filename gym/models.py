@@ -161,12 +161,6 @@ class Profile(models.Model):
                         not_rated_classes.remove(rate.classes)
         return not_rated_classes
 
-    def already_signed(self, class_id):
-        classes = self.classes.all()
-        for c in classes:
-            if(c.id == class_id):
-                return True
-        return False
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):
