@@ -13,25 +13,25 @@
 
 
 <ul style="padding-left: 2%;">
-<div> 
+
 <h3>Your upcoming classes: </h3>
  {% for clss in user.profile.get_future_classes %}
  <li class="list-group-item">
      <a href="/gym/classes/{{clss.id}}"> {{clss.name_and_date}} </a>
      <a class="btn btn-danger" href="/accounts/profile/drop/{{ clss.id }}"> Drop </a>
  </li>
-</div>
+
 
 {%endfor%}
 <h3>Your past classes: </h3>
-<div>
+
  {% for clss in user.profile.get_not_rated_classes %}
  <li class="list-group-item">
      <a href="/gym/classes/{{clss.id}}"> {{clss.name_and_date}} </a>
 
      <a class="btn btn-success" href="/gym/add_rate/{{ clss.id }}"> Add rate </a>
  </li>
-</div>
+
 {%endfor%}
 
 
