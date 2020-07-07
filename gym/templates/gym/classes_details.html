@@ -13,11 +13,11 @@
 
 
 
+<h4>Places left: {{ clss.seats_left }}</h4>
 
 {% if can_sign %}
 <form action='/gym/favourited/{{clss.id}}' method='GET'>
 
-    <h4>Places left: {{ clss.seats_left }}</h4>
   <button type='submit' class="btn btn-dark"> Sign for class </button>
   </form>
 {%endif%}
