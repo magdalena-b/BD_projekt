@@ -46,7 +46,6 @@ def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
     trainer = Trainer.objects.get(pk=clss.trainer.id)
-    #user = Profile.objects.get(pk=request.user.id)
     user = Profile.objects.get(user_id=request.user.id)
     can_sign = True
 
