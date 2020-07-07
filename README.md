@@ -191,6 +191,15 @@ class Classes(models.Model):
     def __str__(self):
         day_of_week = self.date.strftime('%A %H:%M, %-d %B %Y')
         return '{} - {} ({})'.format(self.name, self.description, day_of_week)
+
+        def get_rate(self):
+        rates = self.rate_set.all()
+        if len(rates) <= 0:
+            return "This class doesn't have any rates yet!"
+        mean_rate = mean(item.rate for item in rates)
+        closest_rate = int(round(mean_rate, 2))
+        if(closest_rate > 0): closest_rate = closest_rate - 1
+        return f'{round(mean_rate, 2)}-{R_O[closest_rate][1]}'
 ```
 
 ```python
@@ -199,7 +208,6 @@ class Profile(models.Model):
     name = models.TextField(max_length=500, null=True)
     surname = models.CharField(max_length=30, null=True)
     classes = models.ManyToManyField(Classes)
-
     def get_future_classes(self):
         return self.classes.filter(date__gt=datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S'))
 
@@ -208,6 +216,31 @@ class Profile(models.Model):
 
     def get_fields(self):
         return [(field.name, field.value_to_string(self)) for field in Profile._meta.fields]
+
+    def get_rated_classes(self):
+        classes = self.classes.all()
+        rated_classes = []
+
+        for clss in classes:
+            rates = clss.rate_set.all()
+            for rate in rates:
+                if(rate.user.id == self.id):
+                        rated_classes.append(rate.classes)
+        return rated_classes
+
+    def get_not_rated_classes(self):
+        classes = self.get_past_classes()
+        not_rated_classes = []
+        for c in classes:
+            not_rated_classes.append(c)
+
+        for clss in classes:
+            rates = clss.rate_set.all()
+            for rate in rates:
+                if(rate.user.id == self.id):
+                        not_rated_classes.remove(rate.classes)
+        return not_rated_classes
+
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

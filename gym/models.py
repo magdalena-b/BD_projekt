@@ -70,13 +70,6 @@ class Trainer(models.Model):
         if(closest_rate > 0): closest_rate = closest_rate - 1
         return f'{round(mean_rate, 2)}-{R_O[closest_rate][1]}'
 
-    def get_all_rates(self, user_id):
-        users = self.rate_set.all()
-        rated = False
-        for user in users:
-            if(user.user == user_id):
-                rated = True
-        return rated
 
 
 class Classes(models.Model):
@@ -115,13 +108,6 @@ class Classes(models.Model):
         if(closest_rate > 0): closest_rate = closest_rate - 1
         return f'{round(mean_rate, 2)}-{R_O[closest_rate][1]}'
 
-    def get_all_rates(self, user_id):
-        users = self.rate_set.all()
-        rated = False
-        for user in users:
-            if(user.user == user_id):
-                rated = True
-        return rated
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
