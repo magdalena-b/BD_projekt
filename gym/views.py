@@ -46,13 +46,25 @@ def classes_details(request, class_id):
     
     clss = Classes.objects.get(pk=class_id)
     trainer = Trainer.objects.get(pk=clss.trainer.id)
-    user = Profile.objects.get(pk=request.user.id)
+    #user = Profile.objects.get(pk=request.user.id)
+    user = Profile.objects.get(user_id=request.user.id)
     can_sign = True
 
     profiles = clss.profile_set.all()
+    counter = 0
     for p in profiles:
         if(p.id == user.id):
             can_sign = False
+        counter += 1
+    
+    clss_date = clss.date.strftime('%Y-%m-%d %H:%M:%S')
+    now = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+    if(clss_date <= now):
+        can_sign = False
+
+    if(clss.limit == counter):
+        can_sign = False
+
     return render(request, 'gym/classes_details.html', {'clss': clss, 'trainer': trainer, 'can_sign': can_sign})
 
 
@@ -105,7 +117,8 @@ def check_if_rated(request, class_id):
     user = request.user
     #rates = trainer.rate_set.all()
     rates = clss.rate_set.all()
-    user = Profile.objects.get(pk=request.user.id)
+    #user = Profile.objects.get(pk=request.user.id)
+    ser = Profile.objects.get(user_id=request.user.id)
     rated = False
     for rate in rates:
         if(rate.user.id == user.id):

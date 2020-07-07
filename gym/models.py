@@ -181,5 +181,5 @@ class Rate(models.Model):
 
     class Meta:
         constraints = [
-            models.UniqueConstraint(fields=['trainer', 'user'], name='one_time_rating_trainer'),
+            models.UniqueConstraint(fields=['classes', 'user'], name='one_time_rating_classes'),
         ]
