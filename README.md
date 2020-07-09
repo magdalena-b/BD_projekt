@@ -125,7 +125,11 @@ python manage.py runserver
 
 ## Wygląd aplikacji
 
+Strona główna po zalogowaniu:
+
 <img src="index.png">
+
+Profil użytkownika:
 
 <img src="show_profile.png">
 
